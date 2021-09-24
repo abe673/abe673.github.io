@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awesome</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+  <section id="thisPage" class="hero is-primary is-fullheight"> 
+    <div class="hero-body has-background-dark bg-img">
+      <div class="column"></div> <!-- SPACER -->
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-mobile is-desktop is-widescreen">
+
+            <div class="box" >
+              <div class="field has-text-centered">
+                <img src="image/darkOne.svg" alt="" srcset="">
+              </div>
+              <!-- form Space -->
+              <div class="field">
+                <label class="label" >Nama</label>
+                <div class="control has-icons-left">
+                  <input type="text" id="idname" class="input" >
+                  <span class="icon is-small is-left">
+                    <img src="image/mail.svg" alt="" srcset="">
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label " >Password</label>
+                <div class="control has-icons-left">
+                  <input class="input" type="password" id="idpassword" placeholder="********">
+                  <span class="icon is-small is-left">
+                    <img src="image/lock.svg" alt="" srcset="">
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <button class="button" onclick="send();">
+                  Login
+                </button>
+              </div>
+            </div>
+            
+            <!-- form space -->
+
+          </div>
+        </div>
+      </div>
+      <div class="column"></div> <!-- SPACER -->
+    </div>
+
+    <div class="hero-foot">
+      <div class="container has-background-light">
+      <div class="buttons is-align-items-baseline has-text-centered">
+        <div class="column is-one-third">
+              <div id="cek1" class="label">fak</div>
+        </div>
+        <div class="column is-one-third ">
+              <div id="cek2" class="label">fak</div>
+          </div>
+        <div class="column is-one-third ">
+              <div id="cek3" class="label">fak</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+      
+
+
+  </section>
+  
+  
+  
+<script>
+  
+  
+  function send() {
+    var namaid = document.getElementById("idname").value;
+    var passwordid = document.getElementById("idpassword").value;
+    var object = {
+      "username" : namaid,
+      "password" : passwordid
+    };
+    var object1 = {};
+    object1.username = namaid;
+    object1.password = passwordid;
+
+    console.log(object);
+    var nonAdmin = 'http://192.168.137.1/3000/';
+    var Admin = 'http://localhost:3000/';
+    var isClient = false;
+    if (posting(Admin)) {
+      document.getElementById("cek1").innerHTML = isClient;
+    };
+    
+  };
+
+  function posting(desinasi) {
+    var message = document.getElementById("cek2");
+    fetch(desinasi, {
+      method: 'POST', // or 'PUT'
+      headers: { 'Content-Type': 'application/json',}
+      ,body: JSON.stringify(object1),  
+    })
+    .then(response => response.json())
+    .then(sample => {
+      console.log('Success:', sample);
+      message.innerHTML = error;
+      })
+    .catch((error) => {
+      console.error('Error:', error);
+      message.innerHTML = error;
+      });
+  }
+
+</script>
+</body>
+</html>
